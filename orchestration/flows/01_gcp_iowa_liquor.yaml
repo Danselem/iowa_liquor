@@ -1,5 +1,5 @@
-id: 08_gcp_iowa_liquor
-namespace: zoomcamp
+id: 01_gcp_iowa_liquor
+namespace: iowa
 description: |
   Iowa Liquor Sales Data from Google Bigquery. The data is also available at https://data.iowa.gov/Sales-Distribution/Iowa-Liquor-Sales/m3tr-qhgy/about_data
 inputs:
@@ -98,9 +98,9 @@ tasks:
 
 
 - id: if_iowa_liquor
-    type: io.kestra.plugin.core.flow.If
-    condition: "{{inputs.liquor == 'iowa'}}"
-    then:
+  type: io.kestra.plugin.core.flow.If
+  condition: "{{inputs.liquor == 'iowa'}}"
+  then:
       - id: bq_iowa_liquor
         type: io.kestra.plugin.gcp.bigquery.Query
         sql: |
@@ -202,10 +202,10 @@ tasks:
 
 
 
-  - id: purge_files
-    type: io.kestra.plugin.core.storage.PurgeCurrentExecutionFiles
-    description: If you'd like to explore Kestra outputs, disable it.
-    disabled: false
+- id: purge_files
+  type: io.kestra.plugin.core.storage.PurgeCurrentExecutionFiles
+  description: If you'd like to explore Kestra outputs, disable it.
+  disabled: false
 
 pluginDefaults:
   - type: io.kestra.plugin.gcp

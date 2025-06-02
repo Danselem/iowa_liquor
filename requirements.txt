@@ -1,0 +1,10 @@
+pandas
+requests
+google-cloud-bigquery
+google-cloud-bigquery-storage 
+db-dtypes
+google-cloud-storage
+dbt
+dbt-bigquery
+dbt-postgres
+python-dotenv

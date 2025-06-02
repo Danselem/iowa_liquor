@@ -6,8 +6,8 @@
 
 with liquor_sales as (
     select *,
-        row_number() over (partition by invoice_and_item_number) as rn
-    from {{ source('staging', 'iowa_liquor_sales') }}
+        row_number() over (partition by invoice_and_item_number, date) as rn
+    from {{ source('staging', 'iowa_liquor') }}
     where invoice_and_item_number is not null
 )
 
@@ -50,7 +50,9 @@ select
 from liquor_sales
 where rn = 1
 
+-- dbt build --select <model_name> --vars '{'is_test_run': 'false'}'
 {% if var('is_test_run', default=true) %}
+
 
   limit 100
 

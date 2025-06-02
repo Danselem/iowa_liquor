@@ -1,0 +1,18 @@
+[project]
+name = "iowa-liquor"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "db-dtypes>=1.4.2",
+    "dbt>=1.0.0.40.0",
+    "dbt-bigquery>=1.9.1",
+    "dbt-postgres>=1.9.0",
+    "google-cloud-bigquery>=3.31.0",
+    "google-cloud-bigquery-storage>=2.31.0",
+    "google-cloud-storage>=2.19.0",
+    "pandas>=2.2.3",
+    "python-dotenv>=1.1.0",
+    "requests>=2.32.3",
+]
