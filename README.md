@@ -1,92 +1,83 @@
-# Iowa Liquor Data Engineering Project
+# Iowa Liquor Sales Analytics
 
-A Data Engineering Capstone project that processes and analyzes Iowa Liquor sales data using modern data engineering tools and practices.
-
-## Project Overview
-
-This project implements a data pipeline to process and analyze Iowa Liquor sales data. It includes data ingestion, transformation, and analytics components using industry-standard tools and best practices.
+A data engineering project for analyzing Iowa liquor sales data using modern data stack tools.
 
 ## Project Structure
 
 ```
 .
-├── analytics/         # Analytics and reporting components
-├── orchestration/     # Workflow orchestration files
-├── terraform/         # Infrastructure as Code (IaC) configurations
-├── Makefile          # Build and deployment automation
-├── requirements.txt   # Python dependencies
-└── pyproject.toml    # Project configuration
+├── analytics/                    # Analytics and data transformation
+│   ├── liquor_sales_iowa/       # dbt project for Iowa liquor sales
+│   ├── dbt/                     # dbt configurations and models
+│   ├── sqls/                    # Raw SQL queries
+│   ├── Dockerfile              # Docker configuration for analytics
+│   └── docker-compose.yaml     # Docker compose for analytics services
+│
+├── orchestration/               # Workflow orchestration
+│   ├── flows/                  # Kestra workflow definitions
+│   ├── docker-compose.yml      # Docker compose for Kestra
+│   └── addFlow.sh             # Helper script for adding flows
+│
+├── terraform/                   # Infrastructure as Code
+│
+├── docs/                        # Project documentation
+│
+├── config/                      # Configuration files
+│
+├── .github/                     # GitHub configurations
+│   └── workflows/              # GitHub Actions workflows
+│
+├── Makefile                    # Project build and management commands
+├── requirements.txt            # Python dependencies
+├── pyproject.toml             # Python project configuration
+└── LICENSE                     # Project license
 ```
 
-## Prerequisites
+## Key Components
 
-- Python 3.x
-- Docker
-- Google Cloud Platform (GCP) account
-- GCP credentials configured
+### Analytics
+- **dbt Project**: Located in `analytics/liquor_sales_iowa/`, contains all data transformation models
+- **SQL Queries**: Raw SQL queries stored in `analytics/sqls/`
+- **Docker Configuration**: Containerized analytics environment
 
-## Setup Instructions
+### Orchestration
+- **Kestra Flows**: Workflow definitions in `orchestration/flows/`
+- **Docker Compose**: Local development environment for Kestra
 
-1. Clone the repository:
-```bash
-git clone https://github.com/Danselem/iowa_liquor.git
-cd iowa_liquor
-```
+### Infrastructure
+- **Terraform**: Infrastructure as Code definitions in `terraform/`
 
-2. Set up Python virtual environment:
-```bash
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-```
+## Development Setup
 
-3. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+1. Install Python 3.10
+2. Install uv package manager
+3. Run the following commands:
+   ```bash
+   make init        # Initialize virtual environment
+   make install     # Install dependencies
+   make kestra      # Start Kestra locally
+   ```
 
-4. Configure GCP credentials:
-   - Place your GCP credentials in `.google/credentials/google_credentials.json`
-   - Ensure the credentials have necessary permissions for BigQuery operations
+## Available Commands
 
-4. Set up kestra with docker
-    - To get kestra running, follow the instruction in [Kestra set up](config/kestra.md).
+- `make debug-dbt`: Debug dbt configuration
+- `make deps`: Install dbt dependencies
+- `make dbt-build`: Run dbt build with full refresh
+- `make load`: Run data loading pipeline
+- `make kestra`: Start Kestra orchestration
+- `make delete`: Clean up development environment
 
-5. Set up dbt:
-   - Configure your dbt profile in `~/.dbt/profiles.yml`
-   - Follow the dbt setup instructions in [View DBT config](config/dbt.md).
+## CI/CD
 
-## Usage
-
-1. Build the project:
-```bash
-make build
-```
-
-2. Run the data pipeline:
-```bash
-make run
-```
-
-3. Run tests:
-```bash
-make test
-```
-
-## Infrastructure
-
-The project uses Terraform for infrastructure management. Infrastructure configurations can be found in the `terraform/` directory.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+The project uses GitHub Actions for continuous integration and deployment. The workflow is defined in `.github/workflows/ci-cd.yml` and includes:
+- Python environment setup
+- Dependency installation
+- dbt testing and building
+- Data pipeline execution
 
 ## License
 
-This project is licensed under the terms of the [MIT license](LICENSE) included in the repository.
+This project is licensed under the terms of the license included in the `LICENSE` file.
 
 ## Acknowledgments
 
