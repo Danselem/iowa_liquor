@@ -1,6 +1,14 @@
 # Iowa Liquor Sales Analytics
 
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-blue)](https://github.com/Danselem/iowa_liquor.git)
+
 A data engineering project for analyzing Iowa liquor sales data using modern data stack tools.
+
+## Quick Links
+
+- [Repository](https://github.com/Danselem/iowa_liquor.git)
+- [Issues](https://github.com/Danselem/iowa_liquor/issues)
+- [Pull Requests](https://github.com/Danselem/iowa_liquor/pulls)
 
 ## Project Structure
 
